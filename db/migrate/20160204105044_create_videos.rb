@@ -6,5 +6,6 @@ class CreateVideos < ActiveRecord::Migration
       t.string :category
 
       t.timestamps(null: false)
+    end
   end
 end

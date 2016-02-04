@@ -1,0 +1,35 @@
+.nav li {
+  display: inline-block;
+  padding-right: 25px;
+}
+
+.nav li a {
+  color: #00008B;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.jumbotron {
+  background-color: black;
+  height: 500px;
+  background-repeat: none;
+  background-size: cover;
+}
+
+.jumbotron .container {
+  background-color: black;
+  position: relative;
+  top: 100px;
+}
+
+.jumbotron h2 {
+  color: #fff;
+  font-size: 30px;
+  font-family: 'Shift', sans-serif;
+  font-weight: bold;
+}
+
+.jumbotron p {
+  font-size: 20px;
+  color: #fff;
+}
