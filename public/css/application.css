@@ -9,6 +9,14 @@
   font-weight: bold;
 }
 
+.youtube-link {
+  display: none;
+}
+
+.notetaker {
+  float: right;
+}
+
 .jumbotron {
   background-color: black;
   height: 500px;

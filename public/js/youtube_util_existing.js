@@ -5,7 +5,6 @@ function youtubeParser(url){
     return (match&&match[7].length==11)? match[7] : false;
 };
 
-console.log( youtubeParser("http://www.youtube.com/watch?v=0zM3nApSvMg#t=0m10s") )
 
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -13,12 +12,11 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 $(document).ready(function() {
-  $("form").on("submit", function(event) {
-    event.preventDefault();
-
-    var userLink = youtubeParser($(".youtube-link").val());
-
-    var player = new YT.Player('player', {
+  console.log("BLAH")
+  var userLink = youtubeParser($("span.youtube-link").text());
+    // var userLink = youtubeParser($(".youtube-link").val());
+    console.log(userLink)
+  var player = new YT.Player('player', {
       height: '390',
       width: '640',
       videoId: userLink,
@@ -39,6 +37,5 @@ $(document).ready(function() {
       console.log(player.getCurrentTime())
       // console.log(player.getDuration():Number);
     }
-  });
+
 });
-  
