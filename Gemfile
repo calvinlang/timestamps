@@ -11,6 +11,8 @@ gem 'activesupport', '~>4.2.0'
 gem 'activerecord', '~>4.2.0'
 
 gem 'rake'
+gem 'google-api-client', '~> 0.7.1'
+gem 'trollop'
 
 gem 'shotgun'
 gem 'bcrypt'
