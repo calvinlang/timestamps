@@ -4,7 +4,7 @@ function youtubeParser(url){
     var match = url.match(regExp);
     return (match&&match[7].length==11)? match[7] : false;
 };
-
+console.log("not ready")
 
 $( document ).ready(function() {
     console.log( "ready!" );

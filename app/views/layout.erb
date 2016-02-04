@@ -10,34 +10,32 @@
   <!--
     application.css is where you put your styles
   -->
-  <link rel="stylesheet" href="/css/application.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
+  <link rel="stylesheet" href="/css/application.css">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 
 
   <title>TimeStamps</title>
 </head>
 <body>
-   <header class="nav">
-      <nav class = "container">
-        <ul class="pull-left">
-          <li><a href="/">TimesStamps</a></li>
-        </ul>
+   <header>
+
+          <h1><a href="/">TimesStamps</a></h1>
+    <nav>
        <% if !session[:user_id] %>
-        <ul class="pull-right">
-          <li><a href="/login">Log In</a></li>
-          <li><a href="/users/new">Register</a></li>
+          <a href="/login">Log In</a>
+          <a href="/users/new">Register</a>
         <% else %>
-         <ul class="pull-right">
-          <li><a href='/users/<%= current_user.id %>'><%= current_user.first_name  %></a></li>
-          <li><a href="/logout">logout</a></li>
+          <a href='/users/<%= current_user.id %>'><%= current_user.first_name  %></a>
+          <a href="/logout">logout</a>
         <% end %>
-        </ul>
       </nav>
     </header>
+    <div class="container2">
   <%= yield %>
+</div>
 </body>
 </html>
