@@ -1,13 +1,68 @@
-.nav li {
-  display: inline-block;
-  padding-right: 25px;
+body {
+  background-image: url('http://ih0.redbubble.net/image.61011586.5628/flat,800x800,075,t.u1.jpg');
 }
 
-.nav li a {
-  color: #00008B;
-  text-decoration: none;
-  font-weight: bold;
+header {
+  background: #FF451E;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 415px;
+  height: 5em;
+  padding: 0 2%;
 }
+header h1 {
+  color:#FFFAF0;
+}
+header * {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+}
+
+#animation{
+  width: 500px;
+  font-size: 5em;
+    height: 100px;
+    position: relative;
+    -webkit-animation-name: animation; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 3s; /* Chrome, Safari, Opera */
+    animation-name: animation;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes animation {
+    0%   {color:#FF00FF; left:0px; top:0px;}
+    25%  {color:blue; left:200px; top:0px;}
+    50%  {color:aqua; left:200px; top:200px;}
+    75%  {color:cyan; left:0px; top:200px;}
+    100% {color:#FFEBCD; left:0px; top:0px;}
+}
+
+header nav {
+  float: right;
+  margin-right: 2em;
+  margin-top: 1.75em;
+}
+
+a:link, a:visited {
+  color: inherit;
+}
+
+nav a:not(:first-child) {
+  border-left: 2px solid darkgrey;
+  padding-left: .25em;
+}
+
+.container2 {
+  margin: auto;
+  padding: 2em;
+  padding-top: 0;
+  margin-top: 7em;
+}
+
 
 .jumbotron {
   background-color: black;
@@ -17,13 +72,13 @@
 }
 
 .jumbotron .container {
-  background-color: black;
+  background-color: #46A8BF;
   position: relative;
   top: 100px;
 }
 
 .jumbotron h2 {
-  color: #fff;
+  color: blue;
   font-size: 30px;
   font-family: 'Shift', sans-serif;
   font-weight: bold;
@@ -31,5 +86,50 @@
 
 .jumbotron p {
   font-size: 20px;
+  color: blue;
+}
+
+.login {
+  width: 235px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #E8E8E8;
+  background-color: #56D0B3;
+}
+
+.login > input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid #E8E8E8;
+}
+
+.login button {
+  margin: 5px auto;
   color: #fff;
+  background-color: #D23232;
+  text-shadow: -1px 1px #417cb8;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+.login button:active {
+  box-shadow: inset 0 0 0 1px #27496d,inset 0 5px 30px #193047;
+}
+
+.login form > label {
+  font-size: 14px;
+  margin-left: -130px;
+}
+
+.login-header {
+  text-align: center;
+}
+
+.register {
+  background-image: url('http://ih0.redbubble.net/image.61011586.5628/flat,800x800,075,t.u1.jpg');
 }
