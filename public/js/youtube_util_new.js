@@ -5,7 +5,7 @@ function youtubeParser(url){
     return (match&&match[7].length==11)? match[7] : false;
 };
 
-console.log( youtubeParser("http://www.youtube.com/watch?v=0zM3nApSvMg#t=0m10s") )
+var userLink = youtubeParser($(".youtube-link").val());
 
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -15,8 +15,6 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 $(document).ready(function() {
   $("form").on("submit", function(event) {
     event.preventDefault();
-
-    var userLink = youtubeParser($(".youtube-link").val());
 
     var player = new YT.Player('player', {
       height: '390',
@@ -41,4 +39,4 @@ $(document).ready(function() {
     }
   });
 });
-  
+

@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  validate :password_requirements
+  # validate :password_requirements
 
   def password
     @password ||= BCrypt::Password.new(hashed_password)
@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   def password_requirements
     @raw_password ||= ""
     if @raw_password || new_record?
-      if @raw_password.length > 5 && @raw_password =~ /[!@#$%^&*()]/ && @raw_password =~ /\d/
+      if @raw_password.length <= 5 || !(@raw_password =~ /[!@#$%^&*()]/) || !(@raw_password =~ /\d/)
         errors.add(:password, "must meet our password requirements. 6 characters long. Contains a special character. Has a digit.")
       end
     end
