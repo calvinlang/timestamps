@@ -7,6 +7,8 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
 # Require gems we care about
 require 'rubygems'
+require 'google/api_client'
+require 'trollop'
 
 require 'uri'
 require 'pathname'
