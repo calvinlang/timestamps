@@ -7,5 +7,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :hashed_password, :null => false
 
       t.timestamps(null: false)
+    end
   end
 end

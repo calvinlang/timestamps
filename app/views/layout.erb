@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
+  <!--
     normalize.css removes cross-browser differences in defaults, e.g.,
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
@@ -11,13 +11,33 @@
     application.css is where you put your styles
   -->
   <link rel="stylesheet" href="/css/application.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>TimeStamps</title>
 </head>
 <body>
+   <header class="nav">
+      <nav class = "container">
+        <ul class="pull-left">
+          <li><a href="/">TimesStamps</a></li>
+        </ul>
+       <% if !session[:user_id] %>
+        <ul class="pull-right">
+          <li><a href="/login">Log In</a></li>
+          <li><a href="/users/new">Register</a></li>
+        <% else %>
+         <ul class="pull-right">
+          <li><a href='/users/<%= current_user.id %>'><%= current_user.first_name  %></a></li>
+          <li><a href="/logout">logout</a></li>
+        <% end %>
+        </ul>
+      </nav>
+    </header>
   <%= yield %>
 </body>
 </html>

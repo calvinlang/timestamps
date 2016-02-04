@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :notes
 
-  validates :email, uniqueness: true, format: format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: "enter valid email, ex: janedoe@website.com" }
+  validates :email, uniqueness: true, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: "enter valid email, ex: janedoe@website.com" }
   validates :first_name, presence: true
   validates :last_name, presence: true
 
@@ -17,10 +17,10 @@ class User < ActiveRecord::Base
     self.hashed_password = @password
   end
 
-  private
   def password_requirements
+    @raw_password ||= ""
     if @raw_password || new_record?
-      if @raw_password.length <= 5 || !(@raw_password =~ /[!@#$%^&*()]/) || !(@raw_password =~ /\d/)
+      if @raw_password.length > 5 && @raw_password =~ /[!@#$%^&*()]/ && @raw_password =~ /\d/
         errors.add(:password, "must meet our password requirements. 6 characters long. Contains a special character. Has a digit.")
       end
     end

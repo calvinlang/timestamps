@@ -1,0 +1,15 @@
+<section class ="jumbotron">
+  <div class = "container">
+    <h2>Welcome to TimeStamp</h2>
+    <% if !session[:user_id] %>
+      <p> You are not logged in</p>
+    <% else %>
+    <div class = 'video'>
+      <iframe width="920" height="620"
+        src="https://www.youtube.com/embed/XoNbmWWEk1A">
+      </iframe>
+    </div>
+    <% end %>
+
+  </div>
+</section>
