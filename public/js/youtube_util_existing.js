@@ -4,12 +4,10 @@ function youtubeParser(url){
     var match = url.match(regExp);
     return (match&&match[7].length==11)? match[7] : false;
 };
-console.log("not ready")
 
 $( document ).ready(function() {
 
   document.getElementById("video-timestamp-return").readOnly = true;
-    console.log( "ready!" );
     loadPlayer();
     $("#video-timestamp").on("click", function(event){
       event.preventDefault();
@@ -27,6 +25,11 @@ $( document ).ready(function() {
       $("#video-timestamp-return").val(minutes + ":" + prettySeconds());
     })
 
+    $("ul.note_list").on("click", "a", function(event) {  
+      event.preventDefault();
+      var videoSeek = $(this).attr("href")
+      player.seekTo(videoSeek, true)
+    })
 
     $('#note-form').on("submit", function(event){
       event.preventDefault();
@@ -36,10 +39,12 @@ $( document ).ready(function() {
                            data: $(this).serialize()});
 
       request.done(function(response){
-        console.log(response)
         $(".note_list").append(response);
         $("#note-form").trigger('reset');
       });
+
+
+
     });
 });
 
