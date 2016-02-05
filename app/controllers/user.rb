@@ -19,6 +19,6 @@ post '/users' do
 end
 
 get '/users/:id' do
-  @user = User.find(params[:id])
+  @user = current_user
   erb :'/users/show'
 end
