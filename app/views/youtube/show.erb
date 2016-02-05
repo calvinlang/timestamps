@@ -20,17 +20,21 @@
 
 <div class="notetaker">
   <h3>Note:</h3>
-  <form method="post" action="/youtube/">
-    <textarea rows=10 cols= 80></textarea>
+
+  <form id = "note-form" method="post" action="/youtube/<%=@video.id%>">
+    <textarea rows=10 cols= 80 name="note[body]"></textarea>
+    <br>
+    <button id="video-timestamp" type="button">TimeStamp</button>
+    <input id="video-timestamp-return" type="text" name="note[time]">
     <input type="submit" class="button">
   </form>
 </div>
 
 <div class="existing_notes">
-  <ul>
+  <ul class="note_list">
     <% if current_user %>
     <% @notes.each do |note| %>
-    <li><%=note.body %></li>
+      <%= erb :'/youtube/_note_show', locals: {note: note} %>
     <% end %>
     <% end %>
   </ul>

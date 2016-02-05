@@ -7,18 +7,48 @@ function youtubeParser(url){
 console.log("not ready")
 
 $( document ).ready(function() {
+
+  document.getElementById("video-timestamp-return").readOnly = true;
     console.log( "ready!" );
     loadPlayer();
+    $("#video-timestamp").on("click", function(event){
+      event.preventDefault();
+      var timeInSeconds = Math.floor(player.getCurrentTime());
+      var minutes = Math.floor(timeInSeconds / 60)
+      var seconds = timeInSeconds - minutes * 60;
+      var prettySeconds = function(){
+        if(seconds < 10){
+        return '0' + seconds;
+      }
+      else{
+        return seconds;
+      }
+    }
+      $("#video-timestamp-return").val(minutes + ":" + prettySeconds());
+    })
+
+
+    $('#note-form').on("submit", function(event){
+      event.preventDefault();
+      var url = $(this).attr('action');
+      var request = $.ajax({url:url,
+                           method: "post",
+                           data: $(this).serialize()});
+
+      request.done(function(response){
+        console.log(response)
+        $(".note_list").append(response);
+        $("#note-form").trigger('reset');
+      });
+    });
 });
 
 function youTubeLink(){
   return youtubeParser($(".youtube-link").text());
 }
 
-
 function loadPlayer() {
   if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
-
   var tag = document.createElement('script');
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -27,15 +57,14 @@ function loadPlayer() {
   window.onYouTubePlayerAPIReady = function() {
     onYouTubePlayer();
     };
-  }
-}
+  };
+};
 
 var player;
-
 function onYouTubePlayer() {
   player = new YT.Player('player', {
-    height: '490',
-    width: '880',
+    height: '390',
+    width: '640',
     videoId: youTubeLink(),
     playerVars: { controls:1, showinfo: 0, rel: 0, showsearch: 0, iv_load_policy: 3 },
     events: {
@@ -45,31 +74,32 @@ function onYouTubePlayer() {
   });
 }
 
-  var done = false;
-  function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-      // setTimeout(stopVideo, 6000);
-      done = true;
-    }
-    else if(event.data == YT.PlayerState.ENDED)
-    {
-      location.reload();
-    }
+var done = false;
+function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.PLAYING && !done) {
+    // setTimeout(stopVideo, 6000);
+    done = true;
   }
-
-  function onPlayerReady(event) {
-
-    //if(typeof(SONG.getArtistId()) == undefined)
-    //{
-    //  console.log("undefineeeed");
-    //}
-    //event.target.playVideo();
-  }
-  function catchError(event)
+  else if(event.data == YT.PlayerState.ENDED)
   {
-    if(event.data == 100) console.log("De video bestaat niet meer");
+    location.reload();
   }
+}
 
-  function stopVideo() {
-    player.stopVideo();
-  }
+function onPlayerReady(event) {
+  console.log("running?")
+
+  //if(typeof(SONG.getArtistId()) == undefined)
+  //{
+  //  console.log("undefineeeed");
+  //}
+  //event.target.playVideo();
+}
+function catchError(event)
+{
+  if(event.data == 100) console.log("De video bestaat niet meer");
+}
+
+function stopVideo() {
+  player.stopVideo();
+}
