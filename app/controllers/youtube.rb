@@ -27,4 +27,27 @@ post '/youtube/:video_id' do
   end
 end
 
+put 'youtube/:id/edit' do
+  redirect '/login' unless session[:user_id]
+  @note = Note.find(params[:id])
+  if request.xhr?
+    @note.update_attributes()
+  else
+    redirect "/youtube/#{@note.video_id}"
+  end
+end
+
+delete '/youtube/:id' do
+  redirect '/login' unless session[:user_id]
+  @note = Note.find(params[:id])
+  p params
+  p "*******"
+  if request.xhr?
+    @note.delete
+    # erb :"/youtube/show"
+  else
+    redirect "/youtube/#{@note.video_id}"
+  end
+end
+
 

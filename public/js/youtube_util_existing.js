@@ -24,7 +24,23 @@ $(document).ready(function() {
       $("#video-timestamp-return").val(minutes + ":" + prettySeconds());
     })
 
-    $("ul.note_list").on("click", "a", function(event) {  
+    $("body").on("dblclick", function(event){
+      event.preventDefault();
+      var timeInSeconds = Math.floor(player.getCurrentTime());
+      var minutes = Math.floor(timeInSeconds / 60)
+      var seconds = timeInSeconds - minutes * 60;
+      var prettySeconds = function(){
+        if(seconds < 10){
+        return '0' + seconds;
+      }
+      else{
+        return seconds;
+      }
+    }
+      $("#video-timestamp-return").val(minutes + ":" + prettySeconds());
+    })
+
+    $("ul.note_list").on("click", "a", function(event) {
       event.preventDefault();
       var videoSeek = $(this).attr("href")
       player.seekTo(videoSeek, true)
@@ -32,6 +48,10 @@ $(document).ready(function() {
 
     $('#note-form').on("submit", function(event){
       event.preventDefault();
+      var isTimestamped = $("video-timestamp-return").text();
+      if ( isTimestamped === "" ) {
+        $("#video-timestamp").click(); }
+      }
       var url = $(this).attr('action');
       var request = $.ajax({url:url,
                            method: "post",
@@ -42,6 +62,18 @@ $(document).ready(function() {
       $("#note-form").trigger('reset');
     });
   });
+    $('body').on('submit', '.delete-note', function(event){
+      event.preventDefault();
+      var url = $(this).attr('action');
+      console.log(url);
+      var $note = $(this);
+      var request = $.ajax({url:url,
+                            method:'delete'})
+
+      request.done(function(response){
+        $note.closest('li').remove();
+      })
+    })
 });
 
 function youTubeLink(){

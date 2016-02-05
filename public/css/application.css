@@ -1,6 +1,11 @@
 body {
-  /*background-image: url('http://ih0.redbubble.net/image.61011586.5628/flat,800x800,075,t.u1.jpg');*/
+  background-image: url('http://ih0.redbubble.net/image.61011586.5628/flat,800x800,075,t.u1.jpg');
+
 }
+li {
+  list-style: none;
+}
+
 
 header {
   background: #FF451E;
@@ -71,6 +76,7 @@ nav a:not(:first-child) {
   padding: 2em;
   padding-top: 0;
   margin-top: 7em;
+  background-color: ghostwhite;
 }
 
 
