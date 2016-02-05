@@ -48,6 +48,7 @@ header nav {
 }
 
 a:link, a:visited {
+  font-weight: bold;
   color: inherit;
 }
 
@@ -68,8 +69,13 @@ nav a:not(:first-child) {
   display: none;
 }
 
-.notetaker {
+.existing_notes {
   float: right;
+  width: 45%;
+}
+
+.notetaker {
+  /*float: right;*/
 }
 
 /*.jumbotron {
