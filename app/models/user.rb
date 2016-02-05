@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :notes
+  has_many :videos, through: :notes
 
   validates :email, uniqueness: true, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/, message: "enter valid email, ex: janedoe@website.com" }
   validates :first_name, presence: true
@@ -25,4 +26,8 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  # def review_count
+  #   self.notes.where(video_id: video.id).count
+  # end
 end
