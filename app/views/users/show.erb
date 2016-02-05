@@ -3,9 +3,9 @@
 <h3>Add a new video</h3>
 <form method="post" action="/youtube">
   <label for="video-link">Link:</label>
-  <input  name="video[link]" type="text">
+  <input name="video[link]" type="text" id="user-video-link" value="">
   <label for="video-title">Title</label>
-  <input name="video[title]" type="text">
+  <input name="video[title]" type="text" id="user-video-title">
   <label for="video-category">Category</label>
   <input name="video[category]" type="text">
 
@@ -16,7 +16,8 @@
 <h3>Your Notes:</h3>
 <h4>
 <% current_user.videos.distinct.each do |video| %>
-  <p><a href="/youtube/<%=video.id%>"><%= video.title %></a> Notecount: <%= current_user.notes.where(video_id: video.id).count %></p>
+  <p><a href="/youtube/<%=video.id%>"><img src="http://img.youtube.com/vi/<%=parse_youtube(video.link)%>/0.jpg">
+  <%= video.title %></a> Notecount: <%= current_user.notes.where(video_id: video.id).count %></p>
   <%end%>
 </h4>
 

@@ -4,12 +4,9 @@ function youtubeParser(url){
     var match = url.match(regExp);
     return (match&&match[7].length==11)? match[7] : false;
 };
-console.log("not ready")
 
-$( document ).ready(function() {
-
+$(document).ready(function() {
   document.getElementById("video-timestamp-return").readOnly = true;
-    console.log( "ready!" );
     loadPlayer();
     $("#video-timestamp").on("click", function(event){
       event.preventDefault();
@@ -27,6 +24,11 @@ $( document ).ready(function() {
       $("#video-timestamp-return").val(minutes + ":" + prettySeconds());
     })
 
+    $("ul.note_list").on("click", "a", function(event) {  
+      event.preventDefault();
+      var videoSeek = $(this).attr("href")
+      player.seekTo(videoSeek, true)
+    })
 
     $('#note-form').on("submit", function(event){
       event.preventDefault();
@@ -35,25 +37,25 @@ $( document ).ready(function() {
                            method: "post",
                            data: $(this).serialize()});
 
-      request.done(function(response){
-        console.log(response)
-        $(".note_list").append(response);
-        $("#note-form").trigger('reset');
-      });
+    request.done(function(response){
+      $(".note_list").append(response);
+      $("#note-form").trigger('reset');
     });
+  });
 });
 
 function youTubeLink(){
   return youtubeParser($(".youtube-link").text());
 }
 
+
 function loadPlayer() {
-  if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+// Not sure what this does. Part of API. Sets up a request.
+if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
   var tag = document.createElement('script');
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
   window.onYouTubePlayerAPIReady = function() {
     onYouTubePlayer();
     };
@@ -77,7 +79,7 @@ function onYouTubePlayer() {
 var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING && !done) {
-    // setTimeout(stopVideo, 6000);
+    console.log("hello")
     done = true;
   }
   else if(event.data == YT.PlayerState.ENDED)
@@ -87,14 +89,8 @@ function onPlayerStateChange(event) {
 }
 
 function onPlayerReady(event) {
-  console.log("running?")
-
-  //if(typeof(SONG.getArtistId()) == undefined)
-  //{
-  //  console.log("undefineeeed");
-  //}
-  //event.target.playVideo();
 }
+
 function catchError(event)
 {
   if(event.data == 100) console.log("De video bestaat niet meer");
