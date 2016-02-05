@@ -7,7 +7,7 @@ function youtubeParser(url){
 $(document).ready(function() {
 	$("#user-video-link").on("keyup", function(event) {
 		videoId = youtubeParser(this.value)
-		apiKey = "AIzaSyCUTS1HjPuLwBHvs9KqDlGV0eiiXvM9-Y4"
+		apiKey = YOUTUBE_KEY
 		$.ajax({
 	      url: "https://www.googleapis.com/youtube/v3/videos?id=" + videoId + "&key="+ apiKey + "&fields=items(snippet(title))&part=snippet",
 	      dataType: "jsonp",
