@@ -21,6 +21,15 @@ header * {
   color: white;
 }
 
+p {
+  border-style: solid;
+  border-color: gray;
+}
+
+img {
+  width: 160px;
+}
+
 #animation{
   width: 500px;
   font-size: 5em;

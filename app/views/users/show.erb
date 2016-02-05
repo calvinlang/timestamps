@@ -16,7 +16,8 @@
 <h3>Your Notes:</h3>
 <h4>
 <% current_user.videos.distinct.each do |video| %>
-  <p><a href="/youtube/<%=video.id%>"><%= video.title %></a> Notecount: <%= current_user.notes.where(video_id: video.id).count %></p>
+  <p><a href="/youtube/<%=video.id%>"><img src="http://img.youtube.com/vi/<%=parse_youtube(video.link)%>/0.jpg">
+  <%= video.title %></a> Notecount: <%= current_user.notes.where(video_id: video.id).count %></p>
   <%end%>
 </h4>
 

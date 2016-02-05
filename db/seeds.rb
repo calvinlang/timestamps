@@ -15,7 +15,7 @@ def random_time
 	return rand(8).to_s + ":" + rand(60).to_s
 end
 
-40.times do
+60.times do
   Note.create!(user_id: rand(1..3), video_id: rand(1..3), body: Faker::Lorem.paragraph, time: random_time)
 end
 

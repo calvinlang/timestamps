@@ -14,9 +14,9 @@ $(document).ready(function() {
 	      success: function(response){
 	               $("#user-video-title").val(response.items[0].snippet.title);           
 	      },
-	      // error: function(jqXHR, textStatus, errorThrown) {
-	      //     alert (textStatus, + ' | ' + errorThrown);
-	      // }
+	      error: function(jqXHR, textStatus, errorThrown) {
+	          alert (textStatus, + ' | ' + errorThrown);
+	      }
 		});
 	})
 });
