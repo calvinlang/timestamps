@@ -48,10 +48,10 @@ $(document).ready(function() {
 
     $('#note-form').on("submit", function(event){
       event.preventDefault();
-      var isTimestamped = $("video-timestamp-return").text();
-      if ( isTimestamped === "" ) {
-        $("#video-timestamp").click(); }
-      }
+      // var isTimestamped = $("video-timestamp-return").text();
+      // if ( isTimestamped === "" ) {
+      //   $("#video-timestamp").click(); }
+      // }
       var url = $(this).attr('action');
       var request = $.ajax({url:url,
                            method: "post",
