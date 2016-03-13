@@ -1,8 +1,11 @@
 require 'faker'
 
-3.times do
-  User.create!( :first_name => Faker::Name.first_name,
-                :last_name => "Savage",
+  User.create!( :username => 'calvin',
+                :email      => 'a@a.com',
+                :password   => "password" )
+
+2.times do
+  User.create!( :username => Faker::Name.first_name,
                 :email      => Faker::Internet.email,
                 :password   => "password" )
 end
