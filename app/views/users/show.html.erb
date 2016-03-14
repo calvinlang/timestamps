@@ -1,19 +1,7 @@
-<h3>Welcome <%=current_user.username%>. You currently have notes on <%=@user_videos.count%> video.</h3>
+<h3>Welcome <%=current_user.username%>. You currently have notes on <%=@user_videos.count%> videos.</h3>
 
 <h3>Add a new video</h3>
 <%= render :partial => 'videos/new' %>
-
-
-<form method="post" action="/youtube">
-  <label for="video-link">Link:</label>
-  <input name="video[link]" type="text" id="user-video-link" value="">
-  <label for="video-title">Title</label>
-  <input name="video[title]" type="text" id="user-video-title">
-  <label for="video-category">Category</label>
-  <input name="video[category]" type="text">
-
-  <input type="submit" value="Add Video">
-</form>
 
 <h3>Your Video Notes:</h3>
 <h4>
