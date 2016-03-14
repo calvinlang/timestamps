@@ -6,11 +6,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    p "******"
-    p params
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+
       redirect_to '/'
     else
       return 406
@@ -19,9 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    respond_to do |format|
-        format.html { render nothing: true }
-    end
+    redirect_to "/"
   end
 
   private

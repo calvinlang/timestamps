@@ -4,20 +4,16 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new()
-    render "users/new", layout: false
+    render "users/new"
   end
 
   def create
+    p user_params
+    p "********"
     @user = User.new(user_params)
-
     if @user.save
       session[:user_id] = @user.id
-      respond_to do |format|
-        format.js { render nothing: true }
-        format.html { render nothing: true }
-      end
-      return 202
+      redirect_to "/"
     else
       return 406
     end
@@ -49,8 +45,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
   end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :username, :avatar_url)
+    params.permit(:email, :username, :password)
   end
 end
