@@ -1,22 +1,17 @@
 class SessionsController < ApplicationController
 
-  def uid
-  end
-
   def new
     @user = User.new
-    render "sessions/new", layout: false
+    render "sessions/new"
   end
 
   def create
-    user = User.find_by(username: params[:user][:username])
-    if user && user.authenticate(params[:user][:password])
+    p "******"
+    p params
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      @session = session[:user_id]
-      respond_to do |format|
-        format.js { render nothing: true }
-        format.html { render nothing: true }
-      end
+      redirect_to '/'
     else
       return 406
     end

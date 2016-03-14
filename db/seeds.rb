@@ -1,8 +1,8 @@
 require 'faker'
 
-  User.create!( :username => 'calvin',
-                :email      => 'a@a.com',
-                :password   => "password" )
+User.create!( :username => 'calvin',
+            :email      => 'a@a.com',
+            :password   => "password" )
 
 2.times do
   User.create!( :username => Faker::Name.first_name,
