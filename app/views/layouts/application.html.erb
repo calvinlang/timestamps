@@ -7,8 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+   <header>
 
-<%= yield %>
+          <h1><a href="/">TimeStamps</a></h1>
+    <nav>
+       <% if !session[:user_id] %>
+          <a href="/login">Log In</a>
+          <a href="/users/new">Register</a>
+        <% else %>
+          <a href='/users/<%= current_user.id %>'><%= current_user.first_name  %></a>
+          <a href="/logout">logout</a>
+        <% end %>
+      </nav>
+    </header>
+    
+    <div class="container2">
+	  <%= yield %>
+	</div>
 
 </body>
 </html>
