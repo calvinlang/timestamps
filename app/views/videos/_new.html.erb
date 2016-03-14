@@ -1,0 +1,12 @@
+<%= form_for @video do |f| %>
+	<%= f.label "Link:"  %>
+  	<%= f.text_field :link %>
+
+  	<%= f.label "Title:"  %>
+  	<%= f.text_field :title %>
+
+  	<%= f.label "Category:"  %>
+  	<%= f.text_field :category %>
+
+  	<%= f.submit %>
+<% end %>

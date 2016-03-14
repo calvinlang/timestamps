@@ -1,0 +1,17 @@
+<h3>Welcome <%=current_user.username%>. You currently have notes on <%=@user_videos.count%> videos.</h3>
+
+<h3>Add a new video</h3>
+<%= render :partial => 'videos/new' %>
+
+<h3>Your Video Notes:</h3>
+<h4>
+<% @user_videos.each do |video| %>
+  <li><p><a href="/youtube/<%=video.id%>"><img src="http://img.youtube.com/vi/<%=parse_youtube(video.link)%>/0.jpg">
+  <%= video.title %></a> Notecount: <%= current_user.notes.where(video_id: video.id).count %></p>
+
+  <form method="post" action="/users/<%=video.id %>" class="delete-note">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="delete notes?">
+    </form></li>
+  <%end%>
+</h4>
