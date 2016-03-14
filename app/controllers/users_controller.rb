@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    p user_params
-    p "********"
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -19,8 +17,7 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @user_videos = current_user.videos.distinct
-    p "*******"
-    p @user_videos
+    @video = Video.new
   end
 
   def update
