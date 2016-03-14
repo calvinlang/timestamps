@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  def index
-    @users = User.all
-  end
 
   def new
     render "users/new"
@@ -17,6 +14,13 @@ class UsersController < ApplicationController
     else
       return 406
     end
+  end
+
+  def show
+    @user = current_user
+    @user_videos = current_user.videos.distinct
+    p "*******"
+    p @user_videos
   end
 
   def update
