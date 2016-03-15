@@ -11,13 +11,12 @@ class VideosController < ApplicationController
 
 	def show
 		@video = Video.find(params[:id])
-		p @video
+		@notes = @video.notes
 	end
 
-
 	private
+
 	def video_params
 		params.require(:video).permit(:link, :title, :category)
 	end
-
 end
