@@ -1,6 +1,8 @@
 $(document).ready(function() {
-  document.getElementById("video-timestamp-return").readOnly = true;
+
   loadYouTubePlayer();
+  //So user cannot edit the timestamp
+  document.getElementById("video-timestamp-return").readOnly = true;
 
   $("#video-timestamp").on("click", function(event) {
     event.preventDefault();
@@ -9,17 +11,7 @@ $(document).ready(function() {
 
   $("body").on("dblclick", function(event) {
     event.preventDefault();
-    var timeInSeconds = Math.floor(player.getCurrentTime());
-    var minutes = Math.floor(timeInSeconds / 60);
-    var seconds = timeInSeconds - minutes * 60;
-    var prettySeconds = function() {
-      if (seconds < 10) {
-        return '0' + seconds;
-      } else {
-        return seconds;
-      }
-    };
-    $("#video-timestamp-return").val(minutes + ":" + prettySeconds());
+    setTimeStamp();
   });
 
   $("ul.note_list").on("click", "a", function(event) {
@@ -30,10 +22,6 @@ $(document).ready(function() {
 
   $('#note-form').on("submit", function(event) {
     event.preventDefault();
-    // var isTimestamped = $("video-timestamp-return").text();
-    // if ( isTimestamped === "" ) {
-    //   $("#video-timestamp").click(); }
-    // }
     var url = $(this).attr('action');
     var request = $.ajax({
       url: url,
@@ -46,10 +34,10 @@ $(document).ready(function() {
       $("#note-form").trigger('reset');
     });
   });
+
   $('body').on('submit', '.delete-note', function(event) {
     event.preventDefault();
     var url = $(this).attr('action');
-    console.log(url);
     var $note = $(this);
     var request = $.ajax({
       url: url,

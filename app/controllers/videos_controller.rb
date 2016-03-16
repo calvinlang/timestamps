@@ -14,6 +14,10 @@ class VideosController < ApplicationController
 		@notes = @video.notes
 	end
 
+	def delete
+		
+	end
+
 	private
 
 	def video_params
