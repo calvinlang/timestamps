@@ -38,3 +38,25 @@ function deleteNote(note) {
 	  $note.closest('li').remove();
 	}); 
 }
+
+function preventUserEditOfTimestamp() {
+	$timestampReturn = document.getElementById("video-timestamp-return")
+	if ($timestampReturn) {
+	$timestampReturn.readOnly = true;
+	}
+}
+
+function submitNoteCreate(note) {
+    event.preventDefault();
+    var url = $(note).attr('action');
+    var request = $.ajax({
+      url: url,
+      method: "post",
+      data: $(note).serialize()
+    });
+
+    request.done(function(response) {
+      $(".note_list").append(response);
+      $("#note-form").trigger('reset');
+    });
+}
