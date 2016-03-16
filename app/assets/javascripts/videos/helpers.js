@@ -8,7 +8,7 @@ function youTubeLink() {
   return youtubeParser($(".youtube-link").text());
 }
 
-function setTimeStamp() {
+function setTimeStamp() { 
 	var timeInSeconds = Math.floor(player.getCurrentTime());
 	var minutes = Math.floor(timeInSeconds / 60);
 	var seconds = timeInSeconds - minutes * 60;
@@ -23,4 +23,19 @@ function setTimeStamp() {
 	};
 
 	$("#video-timestamp-return").val(minutes + ":" + prettySeconds());
+}
+
+function deleteNote(note) {
+	event.preventDefault();
+	var url = $(note).attr('action');
+	console.log( url )
+	var $note = $(note);
+	var request = $.ajax({
+	  url: url,
+	  method: 'delete'
+	});
+
+	request.done(function(response) {
+	  $note.closest('li').remove();
+	}); 
 }

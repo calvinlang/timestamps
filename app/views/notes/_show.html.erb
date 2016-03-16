@@ -1,7 +1,7 @@
 <li> 
-	<a id= "<%=note.id%>"href="<%=note_time_converter(note.time)%>"><%=note.time %>:</a>  <%=note.body %>      
-	<form method="post" action="/youtube/<%=note.id %>" class="delete-note">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="delete">
-    </form>
+	<a id= "<%=note.id%>"href="<%=note_time_converter(note.time)%>"><%=note.time %>:</a>  <%=note.body %>
+
+	<%= form_tag note_path(note), :class => "delete-note" do %>
+		<%= submit_tag 'Delete' %>      
+	<% end %>
 </li>
