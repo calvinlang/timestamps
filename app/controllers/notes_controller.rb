@@ -3,7 +3,16 @@ class NotesController < ApplicationController
 	end
 
 	def create
-		
+		@note = current_user.notes.new
+		# Will need to refactor the CSS and JS.
+		@note.video_id = params[:video][:id]
+		@note.time = params["video-timestamp-return"]
+		@note.body = params[:body]
+		if @note.save
+			render :partial => '/notes/show', locals: {note: @note}
+		else
+			return 200
+		end
 	end
 
 	def destroy
@@ -15,6 +24,7 @@ class NotesController < ApplicationController
 	private
 	def note_to_delete
 		@id = params.permit(:id)
-		return @id
 	end
+
+
 end

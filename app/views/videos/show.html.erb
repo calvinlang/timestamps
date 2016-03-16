@@ -17,9 +17,10 @@
 <div class="notetaker">
   <h3>Note:</h3>
   <%= form_tag('/notes', id: "note-form") do %>
-    <%= text_area_tag(:message, "", size: "72x6") %>
+    <%= text_area_tag(:body, "", size: "72x6") %>
     <%= submit_tag 'TimeStamp', id: "video-timestamp" %>
     <%= text_field_tag "video-timestamp-return" %>
+    <%= hidden_field(:video, :id, :value => @video.id) %>
     <%= submit_tag 'Submit', class: "button" %>
   <% end %>
 </div>

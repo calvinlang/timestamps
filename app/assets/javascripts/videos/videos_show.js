@@ -30,6 +30,7 @@ $(document).ready(function() {
     });
 
     request.done(function(response) {
+      console.log( response )
       $(".note_list").append(response);
       $("#note-form").trigger('reset');
     });

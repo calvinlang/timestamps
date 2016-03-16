@@ -28,7 +28,6 @@ function setTimeStamp() {
 function deleteNote(note) {
 	event.preventDefault();
 	var url = $(note).attr('action');
-	console.log( url )
 	var $note = $(note);
 	var request = $.ajax({
 	  url: url,
