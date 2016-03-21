@@ -1,0 +1,27 @@
+  <span class="youtube-link"><%=@video.link %></span>
+  <h3><%=@video.title %></h3>
+  <div id="player"></div>
+
+
+<div class="existing_notes">
+  <ul class="note_list">
+    <% if current_user %>
+      <% @notes.each do |note| %>
+        <%= render :partial => '/notes/show', locals: {note: note} %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="notetaker">
+  <h3>Note:</h3>
+  <%= form_tag('/notes', id: "note-form") do %>
+    <%= text_area_tag(:body, "", size: "72x6") %>
+    <%= submit_tag 'TimeStamp', id: "video-timestamp" %>
+    <%= text_field_tag "video-timestamp-return" %>
+    <%= hidden_field(:video, :id, :value => @video.id) %>
+    <%= submit_tag 'Submit', class: "button" %>
+  <% end %>
+</div>
+

@@ -6,7 +6,7 @@
 <h3>Your Video Notes:</h3>
 <h4>
 <% @user_videos.each do |video| %>
-  <li><p><a href="/youtube/<%=video.id%>"><img src="http://img.youtube.com/vi/<%=parse_youtube(video.link)%>/0.jpg">
+  <li><p><a href="/videos/<%=video.id%>"><img src="http://img.youtube.com/vi/<%=parse_youtube(video.link)%>/0.jpg">
   <%= video.title %></a> Notecount: <%= current_user.notes.where(video_id: video.id).count %></p>
 
   <form method="post" action="/users/<%=video.id %>" class="delete-note">
