@@ -1,6 +1,8 @@
 $(document).ready(function() {
-
+  // Had to edit main documented method to allow for the document on ready
+  // because the location of the video comes from an AJAX call
   loadYouTubePlayer();
+
   //So user cannot edit the timestamp
   preventUserEditOfTimestamp();
 
